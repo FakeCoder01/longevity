@@ -3,5 +3,8 @@ djangorestframework
 django-cors-headers
 requests
 celery
-pillow
+redis
 django-celery
+djangorestframework-jwt
+django[argon2]
+psycopg2
