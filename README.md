@@ -1,24 +1,61 @@
-create an Account Model in django that allows CRUD using REST framework where the email is the unique identifier and password should be stored securely by hashing it using a Django hashing algorithm (e.g., Argon). The login can be done by using the email and password or email and email otp. The otp should have an expiration time of 15 minutes and use celery to send the email otp. The login should be using JWT authentication. Write the serializers, views, models and everything.
+# Longevity Backend Intern Test Task
+
+##Run the project:
 
 
-The endpoints should look like this:
+1. Install python dependencies
 
-/api/users/
-POST : email, password (Creates a new user)
-GET : returns all users
+```
+pip install -r requirements.txt
+```
 
-/api/users/<user_id>/
-PUT : update the user
-GET : get the user data
-DELETE : delete the user
+2. Create a `.env` file in the root directory and paste the following:
 
+```
+# Email Config
+export EMAIL_HOST = YOUR_EMAIL_HOSTNAME
+export EMAIL_HOST_USER = YOUR_EMAIL_USERNAME
+export EMAIL_HOST_PASSWORD = YOUR_EMAIL_PASSWORD
 
-LOGINS:
-/api/login/
-POST : email and password, performs the login
+# DB Config
+export DATABASE_NAME = YOUR_DB_NAME
+export DATABASE_USER = YOUR_DB_USERNAME
+export DATABASE_PASSWORD = YOUR_DB_PASSWORD
+export DATABASE_HOST = 	YOUR_DB_HOST
 
-/api/login/email/
-POST : emails the user the otp for login
+# Redis Sever URL
+export REDIS_SEVER_URL = YOUR_REDIS_OR_RABBITMQ_SERVER
 
-/api/login/verify/
-POST : matches the otp and performs the login
+# Django SECRET_KEY
+export SECRET_KEY = GENERATE_A_DJANGO_SECRET_KEY
+
+``` 
+
+3. Run the migrations:
+
+```
+python manage.py makemigrations
+```
+
+4. Migrate the changes to the DB:
+
+```
+python manage.py migrate
+```
+
+5. Create a superuser for the project
+```
+python manage.py createsuperuser
+```
+
+6. Start the celery:
+
+```
+celery -A longevity worker --loglevel=info
+```
+
+7. Start the django server [use ngnix/gunicorn for production]
+
+```
+python manage.py runserver
+```

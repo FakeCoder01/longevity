@@ -44,8 +44,8 @@ class EmailOTPSendView(views.APIView):
             
             otp = self.generate_otp()
             otp_hash = self.generate_otp_hash(otp)
-            self.save_otp_to_account.delay(email, otp_hash)
-            send_otp_email(email, otp)
+            self.save_otp_to_account(email, otp_hash)
+            send_otp_email.delay(email, otp)
             return Response({"message": "OTP Sent"}, status=status.HTTP_200_OK)
         except Exception as err:
             logger.error(err)

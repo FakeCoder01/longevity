@@ -23,13 +23,13 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wg04d!l1jzu*9o@=7()24z2-rqr@qn_+fd60@_j9s+qzzf@#p$'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
+CORS_ALLOWED_ORIGINS = ["https://*", "http://*"]
 
 # Application definition
 
@@ -158,7 +158,7 @@ SIMPLE_JWT = {
 CELERY_BROKER_URL = os.environ.get('REDIS_SEVER_URL') # 'redis://localhost:6379/0'
 
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
