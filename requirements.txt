@@ -10,3 +10,4 @@ django[argon2]
 psycopg2
 python-dotenv
 djangorestframework-simplejwt
+drf_yasg

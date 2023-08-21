@@ -2,7 +2,10 @@
 
 # Longevity Backend Intern Test Task
 
-### Live API : <a href="https://longevityapi.pythonanywhere.com">https://longevityapi.pythonanywhere.com</a>
+
+## Live API : <a href="https://longevityapi.pythonanywhere.com">https://longevityapi.pythonanywhere.com</a>
+
+## REDOC : <a href="https://longevityapi.pythonanywhere.com/redoc">https://longevityapi.pythonanywhere.com/redoc</a>
 
 ### Test API on <a href="https://www.postman.com/joint-operations-administrator-88851102/workspace/longevity/">Postman</a>
 
