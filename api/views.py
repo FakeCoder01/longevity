@@ -16,6 +16,8 @@ import logging, random, string, datetime
 from django.shortcuts import get_object_or_404
 from rest_framework.authentication import SessionAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.conf import settings
+from django.utils import timezone
 
 # Create your views here.
 
@@ -29,7 +31,10 @@ class EmailOTPSendView(views.APIView):
         return ''.join(random.choices(string.digits, k=length))
 
     def save_otp_to_account(self, email, otp_hash):
-        account = Account.objects.filter(email=email).update(otp_hash=otp_hash)
+        account = Account.objects.filter(email=email).update(
+            otp_hash=otp_hash,
+            otp_sent_at=datetime.datetime.now()
+        )
         return
 
     def generate_otp_hash(self, otp):
@@ -54,6 +59,8 @@ class EmailOTPLoginView(views.APIView):
     permission_classes = [permissions.AllowAny]
 
     def verify_otp(self, account, otp):
+        if timezone.now() - account.otp_sent_at > datetime.timedelta(minutes=settings.OTP_EXPIRATION_IN_MINUTES):
+            return False
         return account.otp_hash == str(hash(otp))
     
     def post(self, request):
@@ -70,7 +77,7 @@ class EmailOTPLoginView(views.APIView):
                     account.save()
                     return Response({'access' : str(refresh.access_token), 'refresh' : str(refresh)}, status=status.HTTP_200_OK)
                 else:
-                    return Response({'message' : 'otp mismatch'}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'message' : 'otp mismatch or expired'}, status=status.HTTP_400_BAD_REQUEST)
             return Response({'message' : 'email & otp required'}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as err:
             logger.error(err)

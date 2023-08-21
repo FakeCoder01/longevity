@@ -136,6 +136,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+OTP_EXPIRATION_IN_MINUTES = 15
 
 AUTH_USER_MODEL = 'api.Account'
 PASSWORD_HASHERS = [
