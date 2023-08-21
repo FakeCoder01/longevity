@@ -85,8 +85,7 @@ python manage.py runserver
 | **500 ERROR** | Failed | Server Error (check config/log) |
 
 
-
-## Endpionts
+## Endpoints
 
 #### Login by password
 
