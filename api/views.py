@@ -1,8 +1,7 @@
 from rest_framework import (
     permissions,
     status,
-    views,
-    viewsets
+    views
 )
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -51,7 +50,7 @@ class EmailOTPSendView(views.APIView):
             logger.error(err)
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-class EmailOTPLoginView(viewsets.ModelViewSet):
+class EmailOTPLoginView(views.APIView):
     permission_classes = [permissions.AllowAny]
 
     def verify_otp(self, account, otp):

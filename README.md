@@ -1,5 +1,8 @@
 # Longevity Backend Intern Test Task
 
+### Live API : <a href="https://longevityapi.pythonanywhere.com">https://longevityapi.pythonanywhere.com</a>
+
+
 ## Run the project:
 
 
@@ -60,6 +63,8 @@ celery -A longevity worker --loglevel=info
 python manage.py runserver
 ```
 
+#### Notes
+** Make sure to run `python manage.py collectstatic` for static files generation  **
 
 
 ## API Reference

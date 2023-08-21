@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('auth/login/', jwt_views.TokenObtainPairView.as_view(), name='password_login'),
     path('auth/login/email/', EmailOTPSendView.as_view(), name="otp_login_send"),
-    path('auth/login/verify/', EmailOTPLoginView.as_view({'post' : 'post'}), name="otp_login_verify"),
+    path('auth/login/verify/', EmailOTPLoginView.as_view(), name="otp_login_verify"),
 
 
     path('auth/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
