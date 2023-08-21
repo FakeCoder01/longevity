@@ -8,3 +8,5 @@ django-celery
 djangorestframework-jwt
 django[argon2]
 psycopg2
+python-dotenv
+gunicorn==20.1.0
