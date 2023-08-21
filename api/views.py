@@ -78,7 +78,7 @@ class EmailOTPLoginView(views.APIView):
 
 class AccountListCreateView(views.APIView):
     
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
     authentication_classes = [SessionAuthentication, JWTAuthentication]
 
     def get(self, request):
@@ -103,8 +103,8 @@ class AccountListCreateView(views.APIView):
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class AccountRetrieveUpdateDeleteView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [SessionAuthentication, JWTAuthentication]
 
     def get(self, request, id:str):
         try:

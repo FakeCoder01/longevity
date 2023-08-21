@@ -2,6 +2,8 @@
 
 ### Live API : <a href="https://longevityapi.pythonanywhere.com">https://longevityapi.pythonanywhere.com</a>
 
+### Test API on <a href="https://www.postman.com/joint-operations-administrator-88851102/workspace/longevity/">Postman</a>
+
 
 ## Run the project:
 
@@ -64,7 +66,7 @@ python manage.py runserver
 ```
 
 #### Notes
-** Make sure to run `python manage.py collectstatic` for static files generation  **
+**Make sure to run `python manage.py collectstatic` for static files generation**
 
 
 ## API Reference
