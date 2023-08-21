@@ -1,6 +1,6 @@
 # Longevity Backend Intern Test Task
 
-##Run the project:
+## Run the project:
 
 
 1. Install python dependencies
@@ -59,3 +59,142 @@ celery -A longevity worker --loglevel=info
 ```
 python manage.py runserver
 ```
+
+
+
+## API Reference
+
+## Responses
+| Response Code | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| **200 OK** | Success | Request was succesfull |
+| **201 CREATED** | Success  | Request was fullfilled & user has been created |
+| **204 NO_CONTENT** | Success | Request was deleted |
+| **400 BAD_REQ** | Failed | Request was unsuccesfull (check params) |
+| **403 FORBIDEN** | Failed | Auth unable (check Authorization Header) |
+| **404 NOT FOUND** | Failed | User not found (check id/email) |
+| **500 ERROR** | Failed | Server Error (check config/log) |
+
+
+
+#### Login by password
+
+```http
+  POST /api/auth/login/
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | body `string` | **Required**. Your Email address |
+| `password` | body `password` | **Required**. Your password |
+
+
+#### Login by Email and OTP
+
+-  First step : send the email and an OTP will be sent
+
+```http
+  POST /api/auth/login/email/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | body `string` | **Required**. Your Email address |
+
+- Second step : send the email and the otp from the email
+
+```http
+  POST /api/auth/login/verify/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | body `string` | **Required**. The previous email |
+| `otp` | body `string` | **Required**. OTP from the email |
+
+
+#### Create a new user
+
+```http
+  POST /api/users/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+| `email` | body `string` | **Required**. Unique Email address |
+| `password` | body `string` | **Required**. Password |
+| `full_name` | body `string` |  Full  name |
+
+
+#### Get all users
+
+```http
+  GET /api/users/
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+
+#### Get one user
+
+```http
+  GET /api/users/${id}/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+| `id`      | `string` | **Required**. Id of the user to fetch |
+
+
+#### Update one user
+
+```http
+  PUT /api/users/${id}/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+| `id`      | `string` | **Required**. Id of the user to update |
+| `email` | body `string` | New unique Email address |
+| `full_name` | body `string` | New full  name |
+
+
+#### Delete one user
+
+```http
+  DELETE /api/users/${id}/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+| `id`      | `string` | **Required**. Id of the user to delete |
+
+
+### Get a new ACCESS_TOKEN
+
+```http
+  POST /api/auth/token/refresh/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+| `refresh`      | `string` | **Required**. Your refresh_token |
+
+
+### Logout / Delete tokens
+
+```http
+  POST /api/auth/token/refresh/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization` | Headers `Bearer <access_token>` | **Required**. Your Access Token |
+| `refresh`      | `string` | **Required**. Your refresh_token |
+
