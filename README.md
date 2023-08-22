@@ -2,12 +2,15 @@
 
 # Longevity Backend Intern Test Task
 
+|<a href="#longevity-backend-intern-test-task">Live</a>|<a href="#run-the-project">Installation & Run</a>|<a href="#api-reference"> API Docs</a>|
+| :-------- | :------- | :-------------------------------- |
 
-## Live API : <a href="https://longevityapi.pythonanywhere.com">https://longevityapi.pythonanywhere.com</a>
+##### Live API : <a href="https://longevityapi.pythonanywhere.com">https://longevityapi.pythonanywhere.com</a>
 
-## REDOC : <a href="https://longevityapi.pythonanywhere.com/redoc">https://longevityapi.pythonanywhere.com/redoc</a>
+##### REDOC : <a href="https://longevityapi.pythonanywhere.com/redoc">https://longevityapi.pythonanywhere.com/redoc</a>
 
-### Test API on <a href="https://www.postman.com/joint-operations-administrator-88851102/workspace/longevity/">Postman</a>
+##### Test API on <a href="https://www.postman.com/joint-operations-administrator-88851102/workspace/longevity/">Postman</a>
+
 
 
 ## Run the project:
